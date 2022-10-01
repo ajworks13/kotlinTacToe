@@ -16,28 +16,34 @@ fun main() {
     println("Welcome user! CPU boss is waiting! what is your name?")
     val user = readLine()
     println("Alright $user, the boss you're facing this time is: $boss")
-    
+
     do{
         gameBoard()
         println("$user, you go first!")
         playerDecision = readLine()
-        
+
         gameBoard(p1 = playerDecision)
         // LEFT OFF HERE.....................................
+
     }while(gameOver != true)
 
 } // main function
 
 fun gameBoard(p1: String? = "", cpu: String? = ""){
-
+    // using these lists to track a winning or draw pattern.
     var firstRow = mutableListOf(" "," "," ")
     var secondRow = mutableListOf(" "," "," ")
     var thirdRow = mutableListOf(" "," ", " ")
+
     // if a number goes missing, the next turn can not select that slot.
     var gameBoardRef = mutableListOf(1,2,3,4,5,6,7,8,9)
 
+    when(p1){
+
+    }
 
 
+    // the board.
     println(" ${firstRow[0]} | ${firstRow[1]} | ${firstRow[2]} ")
     println("-----------")
     println(" ${secondRow[0]} | ${secondRow[1]} | ${secondRow[2]} ")

@@ -16,6 +16,7 @@ fun main() {
     var gameOver = false
 
     val randomNumberForBoss = (1..3).random()
+
     if(randomNumberForBoss == 1){
         boss = "Master Donut Toe"
     }else if(randomNumberForBoss == 2){
@@ -35,6 +36,22 @@ fun main() {
 
         gameBoard(p1 = playerDecision)
         // LEFT OFF HERE.....................................
+        var cpuDecisionNumber = (1..9).random()
+
+        when(cpuDecisionNumber){
+            1 -> firstRow.add(0,"O")
+            2 -> firstRow.add(1,"O")
+            3 -> firstRow.add(2,"O")
+            4 -> secondRow.add(0,"O")
+            5 -> secondRow.add(1,"O")
+            6 -> secondRow.add(2,"O")
+            7 -> thirdRow.add(0,"O")
+            8 -> thirdRow.add(1,"O")
+            9 -> thirdRow.add(2,"O")
+
+        }
+        var strCpuDecisionNumber = cpuDecisionNumber.toString()
+        gameBoard(cpu = strCpuDecisionNumber)
 
     }while(gameOver != true)
 
@@ -48,25 +65,25 @@ fun gameBoard(p1: String? = "", cpu: String? = ""){
     when(p1){
         "1" -> firstRow.add(0, "X")
         "2" -> firstRow.add(1, "X")
-        "3" -> firstRow[2] = "X"
-        "4" -> secondRow[0] = "X"
-        "5" -> secondRow[1] = "X"
-        "6" -> secondRow[2] = "X"
-        "7" -> thirdRow[0] = "X"
-        "8" -> thirdRow[1] = "X"
-        "9" -> thirdRow[2] = "X"
+        "3" -> firstRow.add(2,"X")
+        "4" -> secondRow.add(0,"X")
+        "5" -> secondRow.add(1,"X")
+        "6" -> secondRow.add(2,"X")
+        "7" -> thirdRow.add(0,"X")
+        "8" -> thirdRow.add(1,"X")
+        "9" -> thirdRow.add(2,"X")
 
-        else -> do{
-                    var corrected = false
-
-                    println("Invalid input. Try 1 through 9 if it is available.")
-                    var outOfBounce = readLine()!!.toInt() // converting to int
-// LEFT OFF HERE.....................................
-                    if(outOfBounce <= 1 || outOfBounce >= 9){
-                        corrected = true
-                    }
-
-                }while(corrected != true)
+//        else -> do{
+//                    var corrected = false
+//
+//                    println("Invalid input. Try 1 through 9 if it is available.")
+//                    var outOfBounce = readLine()!!.toInt() // converting to int
+//// LEFT OFF HERE.....................................
+//                    if(outOfBounce <= 1 || outOfBounce >= 9){
+//                        corrected = true
+//                    }
+//
+//                }while(corrected != true)
 
     }
 

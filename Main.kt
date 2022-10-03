@@ -6,7 +6,9 @@ var secondRow = mutableListOf(" "," "," ")
 var thirdRow = mutableListOf(" "," ", " ")
 
 // Keeps track of which ones can not be used after it was already chosen
-var gameBoardRef = mutableListOf(1,2,3,4,5,6,7,8,9)
+var gameBoardRef = mutableListOf(1,2,3,4,5,6,7,8,9,0,0)
+
+var count = 0
 //-----------------------------------------------------------------------------
 
 fun main() {
@@ -34,8 +36,9 @@ fun main() {
         println("$user, you go first!")
         playerDecision = readLine()
 
+        regulator(p1 = playerDecision)
         gameBoard(p1 = playerDecision)
-        // LEFT OFF HERE.....................................
+
         var cpuDecisionNumber = (1..9).random()
 
         when(cpuDecisionNumber){
@@ -50,17 +53,42 @@ fun main() {
             9 -> thirdRow.add(2,"O")
 
         }
+        // convert random choice for cpu into string to be accepted by function.
         var strCpuDecisionNumber = cpuDecisionNumber.toString()
+        regulator(cpu = strCpuDecisionNumber)
         gameBoard(cpu = strCpuDecisionNumber)
 
     }while(gameOver != true)
 
 } // main function
 
+fun regulator(p1: String? = null, cpu: String? = null){
+    println("The count $count")
+    if(count == 1 && p1 == "1" || cpu == "1"){
+        println("ALREADY SELECTED")
+    }
+
+    if(p1 == "1" || cpu == "1" && gameBoardRef.contains(0)){
+        gameBoardRef.removeAt(0)
+        count++
+    }
+    if(p1 == "2" || cpu == "2"){gameBoardRef.removeAt(1)}
+    if(p1 == "3" || cpu == "3"){gameBoardRef.removeAt(2)}
+    if(p1 == "4" || cpu == "4"){gameBoardRef.removeAt(3)}
+    if(p1 == "5" || cpu == "5"){gameBoardRef.removeAt(4)}
+    if(p1 == "6" || cpu == "6"){gameBoardRef.removeAt(5)}
+    if(p1 == "7" || cpu == "7"){gameBoardRef.removeAt(6)}
+    if(p1 == "8" || cpu == "8"){gameBoardRef.removeAt(7)}
+    if(p1 == "9" || cpu == "9"){gameBoardRef.removeAt(8)}
+
+// LEFT OFF HERE...................................
+
+}
+
 fun gameBoard(p1: String? = "", cpu: String? = ""){
     println(gameBoardRef)
     // removes the selected slot.
-    if(p1 == "1"){gameBoardRef.removeAt(0)}
+
 
     when(p1){
         "1" -> firstRow.add(0, "X")
@@ -72,6 +100,7 @@ fun gameBoard(p1: String? = "", cpu: String? = ""){
         "7" -> thirdRow.add(0,"X")
         "8" -> thirdRow.add(1,"X")
         "9" -> thirdRow.add(2,"X")
+
 
 //        else -> do{
 //                    var corrected = false

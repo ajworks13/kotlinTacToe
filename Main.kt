@@ -63,7 +63,7 @@ fun main() {
 } // main function
 
 fun regulator(p1: String? = null, cpu: String? = null){
-    println("The count $count")
+    //println("The count $count")
     if(count >= 1 && p1 == "1" && gameBoardRef[0] == 0){
         println("ALREADY SELECTED")
         do{
@@ -71,7 +71,9 @@ fun regulator(p1: String? = null, cpu: String? = null){
             println(gameBoardRef)
             var p1Chance = readLine()
 
-            if(p1Chance != "1"){
+            if(p1Chance != "1" || gameBoardRef[1] == 0 || gameBoardRef[2] == 0 ||
+                gameBoardRef[3] == 0 || gameBoardRef[4] == 0 || gameBoardRef[5] == 0 ||
+                gameBoardRef[6] == 0 || gameBoardRef[7] == 0 || gameBoardRef[8] == 0){
                 break
             }
         }while(true)

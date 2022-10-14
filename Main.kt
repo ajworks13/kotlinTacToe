@@ -40,7 +40,63 @@ fun main() {
         println("$user, you go first!")
         playerDecision = readLine()
 
-        regulator(p1 = playerDecision)
+        var intPlayerDecision = playerDecision?.toInt()
+
+        when(intPlayerDecision) {
+            1 -> {
+                firstRow.add(0, "O")
+                cpuNumbers.remove(1)
+            }
+
+            2 -> {
+                firstRow.add(1, "O")
+                cpuNumbers.remove(2)
+            }
+
+            3 -> {
+                firstRow.add(2, "O")
+                cpuNumbers.remove(3)
+
+            }
+
+            4 -> {
+                secondRow.add(0, "O")
+                cpuNumbers.remove(4)
+
+            }
+
+            5 -> {
+                secondRow.add(1, "O")
+                cpuNumbers.remove(5)
+
+            }
+
+            6 -> {
+                secondRow.add(2, "O")
+                cpuNumbers.remove(6)
+
+            }
+
+            7 -> {
+                thirdRow.add(0, "O")
+                cpuNumbers.remove(7)
+
+            }
+
+            8 -> {
+                thirdRow.add(1, "O")
+                cpuNumbers.remove(8)
+
+            }
+
+            9 -> {
+                thirdRow.add(2, "O")
+                cpuNumbers.remove(9)
+
+            }
+        }
+
+       // regulator(p1 = playerDecision)
         gameBoard(p1 = playerDecision)
 
         var cpuDecisionNumber = Random.nextInt(cpuNumbers.size)
@@ -94,7 +150,7 @@ fun main() {
         }
         // convert random choice for cpu into string to be accepted by function.
         var strCpuDecisionNumber = cpuDecisionNumber.toString()
-        regulator(cpu = strCpuDecisionNumber)
+       // regulator(cpu = strCpuDecisionNumber)
         gameBoard(cpu = strCpuDecisionNumber)
         println("CPU's SELECTION: $strCpuDecisionNumber")
         println("This is CPU numbers: $cpuNumbers")
@@ -187,6 +243,12 @@ fun gameBoard(p1: String? = "", cpu: String? = ""){
 ------------------------------------------------------------------------------------------------------
 Give the computer an array to go through at random. If a number is selected, it gets removed
 to prevent from being selected.
+
+Maybe have the user share the same fate from the same list.
+
+CPU is able to select number 0. Remove that ability.
+
+When user prints, it shows a O next to any decision from user at the same time.
 
 
 

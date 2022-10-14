@@ -1,3 +1,6 @@
+import kotlin.random.Random
+
+
 // global area
 
 // determines winning or draw patterns.
@@ -7,6 +10,7 @@ var thirdRow = mutableListOf(" "," ", " ")
 
 // Keeps track of which ones can not be used after it was already chosen
 var gameBoardRef = mutableListOf(1,2,3,4,5,6,7,8,9)
+var cpuNumbers = mutableListOf(1,2,3,4,5,6,7,8,9)
 
 var count = 0
 //-----------------------------------------------------------------------------
@@ -39,24 +43,61 @@ fun main() {
         regulator(p1 = playerDecision)
         gameBoard(p1 = playerDecision)
 
-        var cpuDecisionNumber = (1..9).random()
+        var cpuDecisionNumber = Random.nextInt(cpuNumbers.size)
 
         when(cpuDecisionNumber){
-            1 -> firstRow.add(0,"O")
-            2 -> firstRow.add(1,"O")
-            3 -> firstRow.add(2,"O")
-            4 -> secondRow.add(0,"O")
-            5 -> secondRow.add(1,"O")
-            6 -> secondRow.add(2,"O")
-            7 -> thirdRow.add(0,"O")
-            8 -> thirdRow.add(1,"O")
-            9 -> thirdRow.add(2,"O")
+            1 -> {
+                firstRow.add(0,"O")
+                cpuNumbers.remove(1)
+            }
+            2 -> {
+                firstRow.add(1,"O")
+                cpuNumbers.remove(2)
+            }
+            3 -> {
+                firstRow.add(2,"O")
+                cpuNumbers.remove(3)
+
+            }
+            4 -> {
+                secondRow.add(0,"O")
+                cpuNumbers.remove(4)
+
+            }
+            5 -> {
+                secondRow.add(1,"O")
+                cpuNumbers.remove(5)
+
+            }
+            6 -> {
+                secondRow.add(2,"O")
+                cpuNumbers.remove(6)
+
+            }
+            7 -> {
+                thirdRow.add(0,"O")
+                cpuNumbers.remove(7)
+
+            }
+            8 -> {
+                thirdRow.add(1,"O")
+                cpuNumbers.remove(8)
+
+            }
+            9 -> {
+                thirdRow.add(2,"O")
+                cpuNumbers.remove(9)
+
+            }
+
 
         }
         // convert random choice for cpu into string to be accepted by function.
         var strCpuDecisionNumber = cpuDecisionNumber.toString()
         regulator(cpu = strCpuDecisionNumber)
         gameBoard(cpu = strCpuDecisionNumber)
+        println("CPU's SELECTION: $strCpuDecisionNumber")
+        println("This is CPU numbers: $cpuNumbers")
 
     }while(gameOver != true)
 
@@ -70,10 +111,11 @@ fun regulator(p1: String? = null, cpu: String? = null){
             println("Try another unselected number: ")
             println(gameBoardRef)
             var p1Chance = readLine()
+            // DOESNT WORK.........................
+            if(p1Chance != "1" || gameBoardRef[1] != 0 || gameBoardRef[2] != 0 ||
+                gameBoardRef[3] != 0 || gameBoardRef[4] != 0 || gameBoardRef[5] != 0 ||
+                gameBoardRef[6] != 0 || gameBoardRef[7] != 0 || gameBoardRef[8] != 0){
 
-            if(p1Chance != "1" || gameBoardRef[1] == 0 || gameBoardRef[2] == 0 ||
-                gameBoardRef[3] == 0 || gameBoardRef[4] == 0 || gameBoardRef[5] == 0 ||
-                gameBoardRef[6] == 0 || gameBoardRef[7] == 0 || gameBoardRef[8] == 0){
                 break
             }
         }while(true)
@@ -140,3 +182,21 @@ fun gameBoard(p1: String? = "", cpu: String? = ""){
 
 
 }
+
+/*
+------------------------------------------------------------------------------------------------------
+Give the computer an array to go through at random. If a number is selected, it gets removed
+to prevent from being selected.
+
+
+
+
+
+
+
+
+
+
+
+
+ */
